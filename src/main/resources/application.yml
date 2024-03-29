@@ -1,0 +1,9 @@
+address:
+  client:
+    url: https://viacep.com.br/ws/ #http://localhost:8082/adresses
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/cleanarch
+
