@@ -16,7 +16,7 @@ public class ReceiveValidatedCpf {
     final UpdateCustomerUseCase updateCustomerUseCase;
     final CustomerMessageMapper customerMessageMapper;
 
-    @KafkaListener(topics = "tp-cpf-validation", groupId = "eu")
+    @KafkaListener(topics = "tp-cpf-validated", groupId = "eu")
     public void receive(CustomerMessage customerMessage) {
        log.info("CPF {} was validated", customerMessage.getCpf());
        var customer = customerMessageMapper.toCustomer(customerMessage);

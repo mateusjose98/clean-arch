@@ -7,10 +7,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface CustomerMapper {
+public interface CustomerControllerMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "address", ignore = true)
-    @Mapping(target = "isValidCPF", ignore = true)
+    @Mapping(target = "validCPF", ignore = true)
     Customer toDomain(CustomerRequest customerRequest);
 
 

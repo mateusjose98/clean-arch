@@ -1,9 +1,17 @@
+server:
+  port: 8080
 address:
   client:
-    url: https://viacep.com.br/ws/ #http://localhost:8082/adresses
+    url: https://viacep.com.br/ws #http://localhost:8082/adresses
 
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/cleanarch
-
+      host: localhost
+      port: 27017
+      database: cleanarch
+      authentication-database: admin
+      username: root
+      password: example
+  main:
+    allow-bean-definition-overriding: true

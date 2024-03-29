@@ -11,7 +11,7 @@ Na camada de entrypoint, temos os controllers e os consumidores de eventos que s
 O pacote config contém as configurações do Spring Boot e dos Beans, uma vez não temos frameworks e libs no core.
 
 ### Fluxo da aplicação
-
+![img.png](img.png)
 
 
 ### Tecnologias
@@ -22,4 +22,3 @@ O pacote config contém as configurações do Spring Boot e dos Beans, uma vez n
 - MongoDB
 - Docker
 - Kafka
-- Wiremock

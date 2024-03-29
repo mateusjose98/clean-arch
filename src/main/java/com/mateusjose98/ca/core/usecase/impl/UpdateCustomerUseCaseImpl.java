@@ -13,7 +13,9 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
     private final FindAddressByZipCode findAddressByZipCode;
     private final UpdateCustomer updateCustomer;
 
-    public UpdateCustomerUseCaseImpl(FindCustomerByIdUseCase findCustomerByIdUseCase, FindAddressByZipCode findAddressByZipCode, UpdateCustomer updateCustomer) {
+    public UpdateCustomerUseCaseImpl(FindCustomerByIdUseCase findCustomerByIdUseCase,
+                                     FindAddressByZipCode findAddressByZipCode,
+                                     UpdateCustomer updateCustomer) {
         this.findCustomerByIdUseCase = findCustomerByIdUseCase;
         this.findAddressByZipCode = findAddressByZipCode;
         this.updateCustomer = updateCustomer;
@@ -22,8 +24,9 @@ public class UpdateCustomerUseCaseImpl implements UpdateCustomerUseCase {
     @Override
     public void update(Customer customer, String zipCode) {
         Customer existingCustomer = findCustomerByIdUseCase.find(customer.getId());
+        existingCustomer.setName(customer.getName() + "mudado");
         Address address = findAddressByZipCode.find(zipCode);
-        customer.setAddress(address);
-        updateCustomer.update(customer);
+        existingCustomer.setAddress(address);
+        updateCustomer.update(existingCustomer);
     }
 }

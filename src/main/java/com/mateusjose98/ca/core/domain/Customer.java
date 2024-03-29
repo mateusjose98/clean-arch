@@ -7,9 +7,9 @@ public class Customer {
     private String name;
     private String cpf;
     private Address address;
-    private boolean isValidCPF;
+    private Boolean isValidCPF;
 
-    public Customer(String id, String name, String cpf, Address address, boolean isValidCPF) {
+    public Customer(String id, String name, String cpf, Address address, Boolean isValidCPF) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -53,12 +53,12 @@ public class Customer {
         this.address = address;
     }
 
-    public boolean isValidCPF() {
+    public Boolean isValidCPF() {
         return isValidCPF;
     }
 
-    public void setValidCPF(boolean validCPF) {
-        isValidCPF = validCPF;
+    public void setValidCPF(Boolean validCPF) {
+        this.isValidCPF = validCPF;
     }
 
     @Override

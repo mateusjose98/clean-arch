@@ -5,7 +5,7 @@ import com.mateusjose98.ca.core.usecase.DeleteCustomerByIdUseCase;
 import com.mateusjose98.ca.core.usecase.FindCustomerByIdUseCase;
 import com.mateusjose98.ca.core.usecase.InsertCustomerUseCase;
 import com.mateusjose98.ca.core.usecase.UpdateCustomerUseCase;
-import com.mateusjose98.ca.entrypoint.controller.mapper.CustomerMapper;
+import com.mateusjose98.ca.entrypoint.controller.mapper.CustomerControllerMapper;
 import com.mateusjose98.ca.entrypoint.controller.request.CustomerRequest;
 import com.mateusjose98.ca.entrypoint.controller.response.CustomerResponse;
 import jakarta.validation.Valid;
@@ -25,12 +25,12 @@ public class CustomerController {
     private final FindCustomerByIdUseCase findCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
     private final DeleteCustomerByIdUseCase deleteCustomerByIdUseCase;
-    private final CustomerMapper customerMapper;
+    private final CustomerControllerMapper customerControllerMapper;
 
     @PostMapping
     ResponseEntity<Void> create(@RequestBody @Valid CustomerRequest customerRequest) {
         log.info("Creating a customer " + customerRequest);
-        Customer domain = customerMapper.toDomain(customerRequest);
+        Customer domain = customerControllerMapper.toDomain(customerRequest);
         insertCustomerUseCase.insert(domain, customerRequest.getZipCode());
         return ResponseEntity.ok().build();
     }
@@ -39,7 +39,7 @@ public class CustomerController {
     ResponseEntity<CustomerResponse> findById(@PathVariable String id) {
         log.info("Finding a customer by id {} ", id);
         Customer customer = findCustomerUseCase.find(id);
-        CustomerResponse response = customerMapper.toResponse(customer);
+        CustomerResponse response = customerControllerMapper.toResponse(customer);
         return ResponseEntity.ok(response);
     }
 
@@ -47,7 +47,7 @@ public class CustomerController {
     @PutMapping("/{id}")
     ResponseEntity<Void> update(@PathVariable String id, @RequestBody @Valid CustomerRequest customerRequest) {
         log.info("Updating a customer by id {} ", id);
-        Customer domain = customerMapper.toDomain(customerRequest);
+        Customer domain = customerControllerMapper.toDomain(customerRequest);
         domain.setId(id);
         updateCustomerUseCase.update(domain, customerRequest.getZipCode());
         return ResponseEntity.noContent().build();
